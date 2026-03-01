@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Communication Bridge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>The Communication Bridge</h1>
+            <p>Real-Time Sign Language Translation</p>
+        </header>
+
+        <main class="dashboard-grid">
+            <section class="panel camera-panel">
+                <div class="video-wrapper" id="video-wrapper">
+                    <img src="{{ url_for('video_feed') }}" id="video-stream" alt="Camera feed">
+                    <div class="status-overlay" id="camera-off-msg" style="display: none;">Camera Paused</div>
+                </div>
+                
+                <div class="controls-row">
+                    <button id="btn-toggle-cam" class="btn btn-secondary">Pause Camera</button>
+                    <button id="btn-guide" class="btn btn-secondary" style="background-color: #06b6d4; color: black;">Gesture Guide</button>
+                    <button id="btn-sos" class="btn btn-danger">SOS Emergency</button>
+                </div>
+            </section>
+
+            <section class="panel output-panel">
+                <div class="translation-display">
+                    <span class="label">Live Detection</span>
+                    <div class="output-text" id="translation-output">Waiting...</div>
+                </div>
+
+                <div class="history-section">
+                    <span class="label">Recent History</span>
+                    <div class="history-scroll-container">
+                        <ul id="history-list"></ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="guide-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Gesture Cheat Sheet</h2>
+            <div class="guide-grid">
+                <p><strong>Hello:</strong> Open Palm</p>
+                <p><strong>Stop:</strong> Closed Fist</p>
+                <p><strong>Yes / No:</strong> Thumb Up / Down</p>
+                <p><strong>Help:</strong> Index Finger Up</p>
+                <p><strong>Water:</strong> V-Sign (2 Fingers)</p>
+                <p><strong>Food:</strong> 3 Fingers Up</p>
+                <p><strong>Thank You:</strong> 4 Fingers Up</p>
+                <p><strong>Call:</strong> Pinky Finger Only</p>
+                <p><strong>Toilet:</strong> 'T' Shape (Index Pointing Up)</p>
+                <p><strong>Washroom:</strong> Upside-down 'T' (Index Pointing Down)</p>
+                <p><strong>Light ON:</strong> 'L' Shape (Index & Thumb)</p>
+                <p><strong>OK:</strong> Pinch Thumb and Index</p>
+                <p><strong>Fan ON/OFF:</strong> Turn Palm Sideways</p>
+                <p><strong>Emergency:</strong> Shake Open Palm</p>
+            </div>
+            <button id="btn-close-guide" class="btn btn-secondary">Close Guide</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
